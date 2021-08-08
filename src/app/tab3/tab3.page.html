@@ -1,0 +1,18 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Résultat de la recherche
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <img [src]="data[0]['images']" alt="{{ data[0]['name'] }}" class="ion-image-result"/>
+    </ion-card-header>
+    <ion-card-content>
+      <h2 class="ion-text-center">{{ data[0]['name']}}</h2>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

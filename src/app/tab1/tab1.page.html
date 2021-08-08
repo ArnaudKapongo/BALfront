@@ -1,0 +1,70 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar> </ion-toolbar>
+</ion-header>
+<ion-content scrollY="false" class="centerContent">
+  <ion-grid>
+    <ion-text class="ion-text-center" style="color: #222222;">
+      <h5>Gains utilisateurs : {{ numberGain }}</h5>
+      <h5>Papier économisé : {{ randomNumber || 0}}</h5>
+    </ion-text>
+    <ion-text class="ion-text-center" style="color: #222222;">
+      <h1 class="ion-no-margin"><b>Vendre ses livres ici</b></h1>
+      <h5>Simplement, au meilleur prix.</h5>
+    </ion-text>
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <img class="image-scan" src="../../assets/img/scan-1.svg" />
+      </ion-col>
+    </ion-row>
+    <div *ngIf="!showInput">
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <ion-button appBarcodeScan size="large" expand="full" (click)="scanBarcode()">Je scanne le code-barres</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <div class="or">ou</div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <ion-label>Je saisis manuellement</ion-label>
+          <ion-item>
+            <ion-input [(ngModel)]="searchBook" type="text" placeholder="Code-barres ou ISBN">
+            </ion-input>
+            <ion-button class="ion-submit-button" expand="block" fill="outline" (click)="searchBookResult()" >Envoyer</ion-button>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div *ngIf="showInput">
+      <form [formGroup]="formData" (ngSubmit)="onSubmit()" novalidate>
+        <ion-list>
+          <ion-item>
+            <ion-input #isbn color="primary" type="number" formControlName="isbn"> </ion-input>
+          </ion-item>
+        </ion-list>
+        <ion-button type="submit" color="light" size="large" expand="full">
+          <ion-text>Valider</ion-text>
+        </ion-button>
+      </form>
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <ion-button size="large" expand="full" appOpenWebScanner>Scan Web</ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <ion-button fill="clear" routerLink="/about-isbn" class="button-no-border">
+          <ion-icon slot="start" name="help-circle-outline"></ion-icon>
+          L'ISBN, qu'est-ce que c'est ?
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <app-basket-progress></app-basket-progress>
+</ion-footer>
